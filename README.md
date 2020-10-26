@@ -1,3 +1,23 @@
 ### Hexlet tests and linter status:
 ![Actions Status](https://github.com/mkaraev/python-project-lvl3/workflows/hexlet-check/badge.svg)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/52d90bbd0efce1138f80/test_coverage)](https://codeclimate.com/github/mkaraev/python-project-lvl3/test_coverage)
+
+This is a command line utility for downloading a webpage.
+
+
+## Usage
+
+``` bash
+usage: page-loader [-h] [-o OUTPUT] [-l {INFO,DEBUG}] url
+
+Page loader
+
+positional arguments:
+  url
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -o OUTPUT, --output OUTPUT
+                        set output directory
+  -l {INFO,DEBUG}, --log-level {INFO,DEBUG}
+                        set log level
+```
