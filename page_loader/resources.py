@@ -19,7 +19,7 @@ def download_resources(resources, base_url, resources_dir_name):
     log.info("Saving local resources ...")
     create_directory(resources_dir_name)
     total_items = len(resources)
-    bar_width = 40
+    bar_width = len(resources)
 
     with IncrementalBar("Downloading:", max=bar_width) as bar:
         bar.suffix = "%(percent).1f%% (eta: %(eta)s)"
