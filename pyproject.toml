@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "pageloader"
+name = "page_loader"
 version = "0.1.0"
 description = ""
 authors = ["mkaraev <maruf.karaev97@gmail.com>"]
