@@ -40,21 +40,27 @@ def download_resources(resources, base_url, resources_dir_name):
 def find_resources(soup, path):
     resources = []
     for tag, attr in LOCAL_RESOURCES.items():
-        for item in soup.find_all(tag):
-            attr_val = item.get(attr)
-            if attr_val is not None and attr_val.startswith("/"):
-                base, ext = os.path.splitext(attr_val)
-                if ext != "":
-                    new_attr_val = build_resource_name(attr_val)
-                    resources.append(
-                        {
-                            "old_value": attr_val,
-                            "new_value": new_attr_val,
-                        },
-                    )
-                    item[attr] = os.path.join(
-                        path,
-                        new_attr_val,
-                    )
+        resources.extend(find_resources_with_tag(tag, attr, soup, path))
     log.info(f"Found {len(resources)} local resource(s) to save.")
     return soup, resources
+
+
+def find_resources_with_tag(tag, attr, soup, path):
+    resources = []
+    for item in soup.find_all(tag):
+        attr_val = item.get(attr)
+        if attr_val is not None and attr_val.startswith("/"):
+            base, ext = os.path.splitext(attr_val)
+            if ext != "":
+                new_attr_val = build_resource_name(attr_val)
+                resources.append(
+                    {
+                        "old_value": attr_val,
+                        "new_value": new_attr_val,
+                    },
+                )
+                item[attr] = os.path.join(
+                    path,
+                    new_attr_val,
+                )
+    return resources
