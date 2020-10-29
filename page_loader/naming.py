@@ -1,8 +1,7 @@
-import logging
 import os
 import re
-from urllib.parse import urlparse
 from pathlib import Path
+from urllib.parse import urlparse
 
 from page_loader.logging import debug_logger
 

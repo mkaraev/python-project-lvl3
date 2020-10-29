@@ -1,5 +1,4 @@
 import logging
-import sys
 from functools import wraps
 
 log = logging.getLogger(__name__)
