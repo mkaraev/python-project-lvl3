@@ -4,7 +4,7 @@ import os
 from progress.bar import IncrementalBar
 
 from page_loader.common import create_directory, get_url, save
-from page_loader.names import build_resource_name
+from page_loader.naming import build_resource_name
 
 LOCAL_RESOURCES = {
     "link": "href",
