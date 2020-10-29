@@ -9,7 +9,6 @@ def main():
     try:
         parser = cli.get_parser()
         args = parser.parse_args()
-        print(args)
         logging.configure_logger(args.log_level)
         loader.load(args.url, args.output)
     except Exception:

@@ -3,13 +3,14 @@ import sys
 from functools import wraps
 
 log = logging.getLogger(__name__)
-LEVELS = (INFO, DEBUG) = ("INFO", "DEBUG")
+INFO = "INFO"
+DEBUG = "DEBUG"
+LEVELS = (INFO, DEBUG)
 
 
 def configure_logger(log_level):
     log_format = "[ %(levelname)-5.5s ] :: %(message)s"
     logging.basicConfig(
-        handlers=[logging.StreamHandler(sys.stdout)],
         format=log_format,
         level=logging.getLevelName(log_level),
     )

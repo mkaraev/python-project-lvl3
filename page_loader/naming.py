@@ -6,8 +6,6 @@ from pathlib import Path
 
 from page_loader.logging import debug_logger
 
-log = logging.getLogger(__name__)
-
 
 @debug_logger
 def build_resources_directory_name(path):
