@@ -49,7 +49,7 @@ def find_resources_with_tag(tag, attr, soup, path):
     resources = []
     for item in soup.find_all(tag):
         attr_val = item.get(attr)
-        if attr_val is not None and attr_val.startswith("/"):
+        if _is_valid(attr_val):
             base, ext = os.path.splitext(attr_val)
             if ext != "":
                 new_attr_val = build_resource_name(attr_val)
@@ -64,3 +64,7 @@ def find_resources_with_tag(tag, attr, soup, path):
                     new_attr_val,
                 )
     return resources
+
+
+def _is_valid(attr_value):
+    return attr_value is not None and attr_value.startswith("/")
