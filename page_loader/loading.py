@@ -4,12 +4,7 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup
 
-from page_loader import (
-    fs,
-    paths,
-    resources,
-    urls
-)
+from page_loader import fs, paths, resources, urls
 from page_loader.logging import debug_logger
 
 

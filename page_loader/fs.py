@@ -1,6 +1,8 @@
 import logging
 import os
 
+from page_loader.logging import KnownError
+
 
 def create_directory(path):
     if not os.path.exists(path):
@@ -12,9 +14,9 @@ def save(path, data, mode="w"):
     try:
         with open(path, mode) as f:
             f.write(data)
-    except PermissionError:
+    except PermissionError as error:
         log.exception(
             "Permission denied",
             exc_info=log.getEffectiveLevel() == logging.DEBUG,
         )
-        raise
+        raise KnownError(error)

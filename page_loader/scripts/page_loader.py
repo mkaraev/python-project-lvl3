@@ -11,7 +11,7 @@ def main():
         args = parser.parse_args()
         logging.configure_logger(args.log_level)
         loading.load(args.url, args.output)
-    except Exception:
+    except logging.KnownError:
         sys.exit(1)
 
 

@@ -14,9 +14,9 @@ def resource(resource):
     return Path(f"{base}{ext}")
 
 
-def page(res):
-    parsed = urlparse(res)
+def page(url):
+    parsed = urlparse(url)
     scheme = parsed.scheme
-    page_name = parsed.geturl().lstrip(f"{scheme}://")
+    page_name = parsed.geturl()[len(f"{scheme}://") :]
     page_name = re.sub(r"[\W_]", "-", page_name)
     return Path(f"{page_name}.html")

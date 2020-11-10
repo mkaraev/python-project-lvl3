@@ -4,11 +4,7 @@ from collections import namedtuple
 
 from progress.bar import IncrementalBar
 
-from page_loader import (
-    fs,
-    paths,
-    urls
-)
+from page_loader import fs, paths, urls
 from page_loader.logging import debug_logger
 
 LOCAL_RESOURCES = {
@@ -35,7 +31,7 @@ def download(resources, base_url, resources_dir_name):
         processed_percentage = 0
 
         for resource in resources:
-            url = f'{base_url}{resource.old_value}'
+            url = f"{base_url}{resource.old_value}"
             path = os.path.join(resources_dir_name, resource.new_value)
             fs.save(path, urls.get(url).content, "wb")
 
@@ -60,9 +56,7 @@ def _find_resources_with_tag(tag, attr, soup, path):
             base, ext = os.path.splitext(attr_val)
             if ext != "":
                 new_attr_val = paths.resource(attr_val)
-                resources.append(
-                    Resource(attr_val, new_attr_val)
-                )
+                resources.append(Resource(attr_val, new_attr_val))
                 item[attr] = os.path.join(
                     path,
                     new_attr_val,
