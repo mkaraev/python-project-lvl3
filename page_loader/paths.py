@@ -17,6 +17,6 @@ def resource(resource):
 def page(url):
     parsed = urlparse(url)
     scheme = parsed.scheme
-    page_name = parsed.geturl()[len(f"{scheme}://") :]
+    page_name = parsed.geturl()[len(f"{scheme}://"):]
     page_name = re.sub(r"[\W_]", "-", page_name)
     return Path(f"{page_name}.html")
