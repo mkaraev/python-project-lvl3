@@ -15,20 +15,24 @@ testcases = [
         html_with_resources,
         {
             Resource(
-                old_value="/styles/styles.css", new_value=PosixPath("styles-styles.css")
+                old_value="/styles/styles.css",
+                new_value=PosixPath("styles-styles.css")
             ),
             Resource(
                 old_value="/javascript/index.js",
                 new_value=PosixPath("javascript-index.js"),
             ),
             Resource(
-                old_value="/images/image1.img", new_value=PosixPath("images-image1.img")
+                old_value="/images/image1.img",
+                new_value=PosixPath("images-image1.img")
             ),
             Resource(
-                old_value="/images/image2.img", new_value=PosixPath("images-image2.img")
+                old_value="/images/image2.img",
+                new_value=PosixPath("images-image2.img")
             ),
             Resource(
-                old_value="/images/image3.img", new_value=PosixPath("images-image3.img")
+                old_value="/images/image3.img",
+                new_value=PosixPath("images-image3.img")
             ),
         },
     ),

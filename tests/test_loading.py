@@ -27,5 +27,9 @@ def test_loading():
         with tempfile.TemporaryDirectory() as temp_dir:
             loading.load(url, temp_dir)
             assert os.path.exists(os.path.join(temp_dir, "page-com.html"))
-            assert os.path.exists(os.path.join(temp_dir, "page-com_files/assets-photo.jpg"))
-            assert os.path.exists(os.path.join(temp_dir, "page-com_files/assets-styles.css"))
+            assert os.path.exists(
+                os.path.join(temp_dir, "page-com_files/assets-photo.jpg")
+            )
+            assert os.path.exists(
+                os.path.join(temp_dir, "page-com_files/assets-styles.css")
+            )
