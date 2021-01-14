@@ -3,25 +3,14 @@ import tempfile
 
 import requests_mock
 
-from page_loader import loading
+from page_loader import loading, storage
 
 
-def read(file_path):
-    with open(file_path, "rb") as f:
-        result = f.read()
-    return result
-
-
-page = read("./tests/fixtures/page.html")
-css_file = read("./tests/fixtures/styles.css")
-photo = read("./tests/fixtures/photo.jpg")
-
-
-def test_loading():
+def test_loading(html, css, photo):
     with requests_mock.Mocker() as mock:
         url = "http://page.com"
-        mock.get(url, content=page)
-        mock.get(f"{url}/assets/styles.css", content=css_file)
+        mock.get(url, content=html)
+        mock.get(f"{url}/assets/styles.css", content=css)
         mock.get(f"{url}/assets/photo.jpg", content=photo)
 
         with tempfile.TemporaryDirectory() as temp_dir:

@@ -2,33 +2,30 @@ import logging
 import os
 from pathlib import Path
 
-from bs4 import BeautifulSoup
-
-from page_loader import fs, paths, resources, urls
+from page_loader import storage, paths, resources, urls
 from page_loader.logging import debug_logger
 
 
 @debug_logger
-def load(url, output=Path(".")):
+def load(url, output="."):
     log = logging.getLogger()
 
     url = url.rstrip("/")
-    page = os.path.join(output, paths.page(url))
-    resources_dir = paths.resources_dir(page)
+    page_path = os.path.join(output, paths.page(url))
+    resources_dir = paths.resources_dir(page_path)
 
     log.info(f"Saving {url} to the {output} ...")
-    page_content = urls.get(url).content
-    soup, resources_ = resources.find(
-        BeautifulSoup(page_content, "html.parser"),
+    page_content = urls.get(url).text
+    page, resources_ = resources.prepare(
+        page_content,
         resources_dir,
     )
     log.info(f"Found {len(resources_)} local resource(s) to save.")
-    fs.save(page, str(soup.prettify()))
+    storage.save(page_path, page)
 
-    if resources_:
-        resources.download(
-            resources_,
-            urls.site_url(url),
-            resources_dir,
-        )
-    log.info(f"Done. You can open saved page from: {page}")
+    resources.download(
+        resources_,
+        urls.site_url(url),
+        resources_dir,
+    )
+    log.info(f"Done. You can open saved page from: {page_path}")

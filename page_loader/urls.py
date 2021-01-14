@@ -3,7 +3,7 @@ from urllib.parse import urlsplit
 
 import requests
 
-from page_loader.logging import KnownError
+from page_loader.errors import KnownError
 
 log = logging.getLogger()
 

@@ -1,48 +1,30 @@
+import os
 import pytest
 
-from pathlib import PosixPath
-
-from bs4 import BeautifulSoup
-
 from page_loader import resources
-from page_loader.resources import Resource
+from page_loader import storage
 
-from tests.fixtures import simple_html, html_with_resources
 
-testcases = [
-    (simple_html, set()),
-    (
-        html_with_resources,
-        {
-            Resource(
-                old_value="/styles/styles.css",
-                new_value=PosixPath("styles-styles.css")
-            ),
-            Resource(
-                old_value="/javascript/index.js",
-                new_value=PosixPath("javascript-index.js"),
-            ),
-            Resource(
-                old_value="/images/image1.img",
-                new_value=PosixPath("images-image1.img")
-            ),
-            Resource(
-                old_value="/images/image2.img",
-                new_value=PosixPath("images-image2.img")
-            ),
-            Resource(
-                old_value="/images/image3.img",
-                new_value=PosixPath("images-image3.img")
-            ),
-        },
-    ),
-]
+def get_fixture_path(file_name):
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    return os.path.join(current_dir, 'fixtures', file_name)
 
 
 @pytest.mark.parametrize(
-    "html, expected", testcases, ids=["Empty html", "HTML with resources"]
+    "html, expected",
+    [
+        ("simple.html", set()),
+        ("with_resources.html", {
+            ("/styles/styles.css", "styles-styles.css"),
+            ("/javascript/index.js", "javascript-index.js"),
+            ("/images/image1.img", "images-image1.img"),
+            ("/images/image2.img", "images-image2.img"),
+            ("/images/image3.img", "images-image3.img"),
+        })
+    ],
+    ids=["Empty html", "HTML with resources"]
 )
 def test_find(html, expected):
-    soup = BeautifulSoup(html, "html.parser")
-    soup, resources_ = resources.find(soup, "./")
+    html = storage.read(get_fixture_path(html))
+    html, resources_ = resources.prepare(html, "./")
     assert set(resources_) == expected

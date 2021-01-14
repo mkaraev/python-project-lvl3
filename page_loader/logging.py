@@ -7,11 +7,7 @@ DEBUG = "DEBUG"
 LEVELS = (INFO, DEBUG)
 
 
-class KnownError(BaseException):
-    pass
-
-
-def configure_logger(log_level):
+def configure(log_level):
     log_format = "[ %(levelname)-5.5s ] :: %(message)s"
     logging.basicConfig(
         format=log_format,

@@ -1,7 +1,7 @@
 import logging
 import os
 
-from page_loader.logging import KnownError
+from page_loader.errors import KnownError
 
 
 def create_directory(path):
@@ -20,3 +20,8 @@ def save(path, data, mode="w"):
             exc_info=log.getEffectiveLevel() == logging.DEBUG,
         )
         raise KnownError(error)
+
+
+def read(file_path, mode='r'):
+    with open(file_path, mode) as f:
+        return f.read()
