@@ -1,6 +1,5 @@
 import argparse
-
-from page_loader import logging
+import page_loader.logging
 
 
 def get_parser():
@@ -13,10 +12,10 @@ def get_parser():
         help="set output directory",
     )
     parser.add_argument(
-        "-l",
-        "--log-level",
-        choices=logging.LEVELS,
-        default=logging.INFO,
-        help="set log level",
+        '-l',
+        '--log-level',
+        choices=page_loader.logging.LEVELS.keys(),
+        default='info',
+        help='set log level',
     )
     return parser

@@ -1,2 +1,0 @@
-class KnownError(BaseException):
-    pass

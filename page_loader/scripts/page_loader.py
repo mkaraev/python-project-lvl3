@@ -1,20 +1,20 @@
 import sys
+import logging
 
-import page_loader.cli
-import page_loader.errors
 from page_loader import cli
 from page_loader import loading
-from page_loader import logging
+import page_loader.logging
 
 
 def main():
     parser = cli.get_parser()
     args = parser.parse_args()
-    logging.configure(args.log_level)
-
+    page_loader.logging.setup(args.log_level)
     try:
-        loading.load(args.url, args.output)
-    except page_loader.errors.KnownError:
+        html_page_path = loading.download(args.url, args.output)
+        print(f"Done. You can open saved page from: {html_page_path}")
+    except Exception as error:
+        logging.error(f"Download failed: {error}")
         sys.exit(1)
 
 
