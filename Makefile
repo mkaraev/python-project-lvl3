@@ -7,7 +7,8 @@ test:
 lint:
 	poetry run flake8 page_loader
 	poetry run flake8 tests
-
+	poetry run isort page_loader
+	poetry run isort tests
 
 selfcheck:
 	poetry check

@@ -1,9 +1,8 @@
-import sys
 import logging
+import sys
 
-from page_loader import cli
-from page_loader import loading
 import page_loader.logging
+from page_loader import cli, loading
 
 
 def main():

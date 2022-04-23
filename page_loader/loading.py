@@ -5,7 +5,7 @@ from progress.bar import IncrementalBar
 from requests.exceptions import RequestException
 
 import page_loader.url
-from page_loader import storage, resources, html
+from page_loader import html, resources, storage
 
 
 def download(url, output="."):
