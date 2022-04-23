@@ -28,4 +28,4 @@ def prepare(content, page_url, assets_dir):
         tag[name] = os.path.join(assets_dir, asset_path)
         assets.append((full_asset_url, asset_path))
 
-    return soup.prettify(formatter="html5"), assets
+    return soup.prettify(), assets
